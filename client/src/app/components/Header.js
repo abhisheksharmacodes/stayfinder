@@ -58,8 +58,8 @@ const Header = ({ searchInput, setSearchInput }) => {
             onClick={() => router.push('/')} 
             className="flex items-center cursor-pointer gap-2"
           >
-            <span className='text-2xl font-extrabold text-indigo-700 tracking-tight'>
-              <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">StayFinder</span>
+            <span className='text-2xl font-extrabold text-red-400 tracking-tight'>
+              <span className="bg-gradient-to-r from-red-400 to-red-500 bg-clip-text text-transparent">StayFinder</span>
             </span>
           </div>
 
@@ -67,9 +67,9 @@ const Header = ({ searchInput, setSearchInput }) => {
           <div className="flex items-center space-x-2">
             {user ? (
               <div className="relative group">
-                <button className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors">
-                  <FaUserCircle className="text-2xl text-indigo-600" />
-                  <span className="text-sm font-semibold text-gray-800">{user.name.split(" ")[0]}</span>
+                <button className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-red-50 transition-colors">
+                  <FaUserCircle className="text-3xl text-red-400" />
+                  <span className="text-md font-semibold text-gray-800">{user.name.split(" ")[0]}</span>
                 </button>
                 <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto transition-all duration-200 z-50">
                   <button
@@ -84,10 +84,10 @@ const Header = ({ searchInput, setSearchInput }) => {
             ) : (
               <div className="hidden lg:flex items-center space-x-2">
                 <Link href="/login">
-                  <span className="px-4 py-2 rounded-lg border border-indigo-600 text-indigo-600 font-semibold hover:bg-indigo-50 transition-colors cursor-pointer">Login</span>
+                  <span className="px-4 py-2 rounded-lg border border-red-400 text-red-400 font-semibold hover:bg-red-50 transition-colors cursor-pointer">Login</span>
                 </Link>
                 <Link href="/register">
-                  <span className="px-4 py-2 rounded-lg bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition-colors cursor-pointer">Register</span>
+                  <span className="px-4 py-2 rounded-lg bg-red-400 text-white font-semibold hover:bg-red-500 transition-colors cursor-pointer">Register</span>
                 </Link>
               </div>
             )}

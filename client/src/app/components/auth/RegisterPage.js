@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Snackbar from '../../components/Snackbar';
 
 function RegisterPage() {
   const [name, setName] = useState('');
@@ -10,22 +11,26 @@ function RegisterPage() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [snackbar, setSnackbar] = useState({ isVisible: false, message: '', type: 'error' });
   const router = useRouter();
 
   const handleRegister = async (e) => {
     e.preventDefault();
     setError('');
     setIsLoading(true);
+    setSnackbar({ isVisible: false, message: '', type: 'error' });
 
     // Simple client-side validation
     if (!name || !email || !password || !confirmPassword) {
       setError('Please fill in all fields.');
+      setSnackbar({ isVisible: true, message: 'Please fill in all fields.', type: 'error' });
       setIsLoading(false);
       return;
     }
 
     if (password !== confirmPassword) {
       setError('Passwords do not match.');
+      setSnackbar({ isVisible: true, message: 'Passwords do not match.', type: 'error' });
       setIsLoading(false);
       return;
     }
@@ -41,6 +46,7 @@ function RegisterPage() {
     for (const req of passwordRequirements) {
       if (!req.regex.test(password)) {
         setError(req.message);
+        setSnackbar({ isVisible: true, message: req.message, type: 'error' });
         setIsLoading(false);
         return;
       }
@@ -69,6 +75,7 @@ function RegisterPage() {
       router.push('/');
     } catch (error) {
       setError(error.message || 'An error occurred during registration');
+      setSnackbar({ isVisible: true, message: error.message || 'An error occurred during registration', type: 'error' });
     } finally {
       setIsLoading(false);
     }
@@ -76,6 +83,13 @@ function RegisterPage() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4 sm:px-6 lg:px-8">
+      <Snackbar
+        message={snackbar.message}
+        type={snackbar.type}
+        isVisible={snackbar.isVisible}
+        onClose={() => setSnackbar({ ...snackbar, isVisible: false })}
+        duration={4000}
+      />
       <div className="w-full max-w-md px-6 sm:px-8 py-6 sm:py-8 mt-4 text-left bg-white shadow-lg rounded-lg">
         <h3 className="text-xl sm:text-2xl font-bold text-center mb-6">Register for StayFinder</h3>
         <form onSubmit={handleRegister}>
@@ -128,16 +142,15 @@ function RegisterPage() {
                 disabled={isLoading}
               />
             </div>
-            {error && <p className="text-red-500 text-sm">{error}</p>}
             <button 
-              type="submit" 
-              className={`w-full px-4 sm:px-6 py-2 sm:py-3 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors text-sm sm:text-base font-medium ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+              type="submit"
+              className={`w-full px-4 sm:px-6 py-2 sm:py-3 text-white bg-red-400 rounded-lg hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 transition-colors text-sm sm:text-base font-medium ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
               disabled={isLoading}
             >
               {isLoading ? 'Creating account...' : 'Register'}
             </button>
             <p className="text-center text-sm sm:text-base">
-              Already have an account? <a href="/login" className="text-blue-600 hover:underline font-medium">Login here</a>
+              Already have an account? <a href="/login" className="text-red-400 hover:underline font-medium">Login here</a>
             </p>
           </div>
         </form>

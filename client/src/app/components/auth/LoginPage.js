@@ -2,22 +2,26 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Snackbar from '../../components/Snackbar';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [snackbar, setSnackbar] = useState({ isVisible: false, message: '', type: 'error' });
   const router = useRouter();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
     setIsLoading(true);
+    setSnackbar({ isVisible: false, message: '', type: 'error' });
 
     // Simple client-side validation
     if (!email || !password) {
       setError('Please enter both email and password.');
+      setSnackbar({ isVisible: true, message: 'Please enter both email and password.', type: 'error' });
       setIsLoading(false);
       return;
     }
@@ -45,6 +49,7 @@ function LoginPage() {
       router.push('/');
     } catch (error) {
       setError(error.message || 'An error occurred during login');
+      setSnackbar({ isVisible: true, message: error.message || 'An error occurred during login', type: 'error' });
     } finally {
       setIsLoading(false);
     }
@@ -52,6 +57,13 @@ function LoginPage() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4 sm:px-6 lg:px-8">
+      <Snackbar
+        message={snackbar.message}
+        type={snackbar.type}
+        isVisible={snackbar.isVisible}
+        onClose={() => setSnackbar({ ...snackbar, isVisible: false })}
+        duration={4000}
+      />
       <div className="w-full max-w-md px-6 sm:px-8 py-6 sm:py-8 mt-4 text-left bg-white shadow-lg rounded-lg">
         <h3 className="text-xl sm:text-2xl font-bold text-center mb-6">Login to StayFinder</h3>
         <form onSubmit={handleLogin}>
@@ -80,16 +92,15 @@ function LoginPage() {
                 disabled={isLoading}
               />
             </div>
-            {error && <p className="text-red-500 text-sm">{error}</p>}
             <button 
-              type="submit" 
-              className={`w-full px-4 sm:px-6 py-2 sm:py-3 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors text-sm sm:text-base font-medium ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+              type="submit"
+              className={`w-full px-4 sm:px-6 py-2 sm:py-3 text-white bg-red-400 rounded-lg hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 transition-colors text-sm sm:text-base font-medium ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
               disabled={isLoading}
             >
               {isLoading ? 'Logging in...' : 'Login'}
             </button>
             <p className="text-center text-sm sm:text-base">
-              Don&apos;t have an account? <a href="/register" className="text-blue-600 hover:underline font-medium">Register here</a>
+              Don&apos;t have an account? <a href="/register" className="text-red-400 hover:underline font-medium">Register here</a>
             </p>
           </div>
         </form>
