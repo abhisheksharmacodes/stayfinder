@@ -248,7 +248,7 @@ function ListingDetail() {
             </div>
 
             {/* Right Column - Booking Box */}
-            <div className="w-full lg:w-96 xl:w-112 p-4 sm:p-6 border rounded-xl shadow-lg mt-6 lg:mt-0">
+            <div className="w-full lg:w-96 xl:w-122 h-auto self-start p-4 sm:p-6 border rounded-xl shadow-lg mt-6 lg:mt-0">
               <div className="flex justify-between items-center mb-4">
                 <p className="text-xl sm:text-2xl font-bold">{listingData.currency}{listingData.price} <span className="font-normal text-sm sm:text-base text-gray-600">/ night</span></p>
                 <p className="text-xs sm:text-sm text-gray-600">Prices include all fees</p>
