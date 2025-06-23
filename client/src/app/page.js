@@ -29,7 +29,7 @@ export default function Home() {
   useEffect(() => {
     const fetchListings = async () => {
       try {
-        const response = await fetch('https://glen-three.vercel.app/api/listings');
+        const response = await fetch('https://glen-21u1.vercel.app/api/listings');
         if (!response.ok) {
           throw new Error('Failed to fetch listings');
         }
@@ -52,7 +52,7 @@ export default function Home() {
       const map = {};
       await Promise.all(listings.map(async (listing) => {
         try {
-          const res = await fetch(`https://glen-three.vercel.app/api/bookings?listingId=${listing._id}`);
+          const res = await fetch(`https://glen-21u1.vercel.app/api/bookings?listingId=${listing._id}`);
           if (res.ok) {
             const bookings = await res.json();
             map[listing._id] = bookings.map(b => ({ start: new Date(b.startDate), end: new Date(b.endDate) }));

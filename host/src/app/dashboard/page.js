@@ -12,7 +12,7 @@ export default function DashboardPage() {
   useEffect(() => {
     async function fetchListings() {
       try {
-        const res = await fetch("https://glen-three.vercel.app/api/listings");
+        const res = await fetch("https://glen-21u1.vercel.app/api/listings");
         if (!res.ok) throw new Error("Failed to fetch listings");
         const data = await res.json();
         setListings(data);

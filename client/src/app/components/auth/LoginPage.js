@@ -23,7 +23,7 @@ function LoginPage() {
     }
 
     try {
-      const response = await fetch('https://glen-three.vercel.app/api/auth/login', {
+      const response = await fetch('https://glen-21u1.vercel.app/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ function LoginPage() {
               {isLoading ? 'Logging in...' : 'Login'}
             </button>
             <p className="text-center text-sm sm:text-base">
-              Don't have an account? <a href="/register" className="text-blue-600 hover:underline font-medium">Register here</a>
+              Don&apos;t have an account? <a href="/register" className="text-blue-600 hover:underline font-medium">Register here</a>
             </p>
           </div>
         </form>

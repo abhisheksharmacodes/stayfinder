@@ -47,7 +47,7 @@ function RegisterPage() {
     }
 
     try {
-      const response = await fetch('https://glen-three.vercel.app/api/auth/register', {
+      const response = await fetch('https://glen-21u1.vercel.app/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

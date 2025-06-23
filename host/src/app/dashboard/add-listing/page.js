@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Snackbar from "../../components/Snackbar";
 
-const API_URL = "https://glen-three.vercel.app/api/listings";
+const API_URL = "https://glen-21u1.vercel.app/api/listings";
 
 async function uploadImage(file) {
   const formData = new FormData();

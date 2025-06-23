@@ -45,7 +45,7 @@ function ListingDetail() {
   useEffect(() => {
     const fetchListing = async () => {
       try {
-        const response = await fetch(`https://glen-three.vercel.app/api/listings/${id}`);
+        const response = await fetch(`https://glen-21u1.vercel.app/api/listings/${id}`);
         if (!response.ok) {
           throw new Error('Failed to fetch listing details');
         }
@@ -59,7 +59,7 @@ function ListingDetail() {
     };
     const fetchBookings = async () => {
       try {
-        const res = await fetch(`https://glen-three.vercel.app/api/bookings?listingId=${id}`);
+        const res = await fetch(`https://glen-21u1.vercel.app/api/bookings?listingId=${id}`);
         if (res.ok) {
           const bookings = await res.json();
           setBookedRanges(bookings.map(b => ({ start: new Date(b.startDate), end: new Date(b.endDate) })));
@@ -86,7 +86,7 @@ function ListingDetail() {
       return;
     }
     try {
-      const res = await fetch('https://glen-three.vercel.app/api/bookings', {
+      const res = await fetch('https://glen-21u1.vercel.app/api/bookings', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
