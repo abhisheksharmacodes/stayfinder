@@ -155,7 +155,7 @@ function ListingDetail() {
       <Header />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <section className="pt-4 sm:pt-6">
-          <h1 className="text-2xl sm:text-3xl font-semibold pb-3 sm:pb-5 px-4 sm:px-0">{listingData.title}</h1>
+          <h1 className="text-2xl sm:text-3xl font-semibold pb-3 sm:pb-5 px-4 sm:px-0">{listingData.title} in {listingData.city}</h1>
 
           {/* Responsive Image Gallery */}
           <div className="grid grid-cols-2 grid-rows-2 gap-2 rounded-xl overflow-hidden mb-4 sm:mb-6">
