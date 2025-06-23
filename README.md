@@ -1,4 +1,4 @@
-# Glen Project
+# Stay Finder
 
 This is a full-stack web application for property listings and bookings.
 
