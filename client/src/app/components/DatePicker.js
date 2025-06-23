@@ -29,9 +29,9 @@ function DatePicker({ startDate, endDate, onChange, disabledRanges = [] }) {
     const newStartDate = ranges.selection.startDate;
     const newEndDate = ranges.selection.endDate;
     
-    // Additional validation to prevent past dates
-    if (newStartDate < today) {
-      return; // Don't update if start date is in the past
+    // Allow today, block only strictly past dates
+    if (newStartDate.setHours(0,0,0,0) < today.getTime()) {
+      return; // Don't update if start date is before today
     }
     
     // Allow single-day bookings by ensuring endDate is at least startDate
