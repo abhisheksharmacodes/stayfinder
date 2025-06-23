@@ -150,10 +150,9 @@ export default function Home() {
                   <input
                     type="text"
                     placeholder="Search destinations"
-                    className="outline-none bg-transparent text-sm w-26"
+                    className="outline-none bg-transparent text-sm w-31"
                     value={searchInput}
                     onChange={e => setSearchInput(e.target.value)}
-                    style={{ minWidth: 120 }}
                   />
                 </div>
                 <div className="h-8 border-l mx-2" />
@@ -288,7 +287,7 @@ export default function Home() {
             </div>
           </div>
 
-          <h2 className="text-xl sm:text-2xl font-semibold py-4 sm:py-6 px-4 sm:px-0">Popular properties</h2>
+          <h2 className="text-xl sm:text-2xl font-semibold py-4 sm:py-6 px-4 sm:px-0">All properties</h2>
           {filteredProperties.length ? <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 p-4 sm:p-0">
             {filteredProperties?.map(({ _id, images, city, title, currency, price, rating }) => (
               <Link key={_id} href={`/listings/${_id}`}>
