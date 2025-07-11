@@ -40,7 +40,7 @@ A full-stack web application for discovering, listing, and booking short-term st
 
 ### 1. Clone & Install
 ```bash
-git clone <repository-url>
+git clone https://github.com/abhisheksharmacodes/stayfinder.git
 cd glen
 ```
 
