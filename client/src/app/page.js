@@ -3,12 +3,13 @@
 import Image from "next/image";
 import Header from './components/Header';
 import MediumCard from './components/MediumCard';
-import Footer from './components/Footer';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { FaSearch, FaTimes } from 'react-icons/fa';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
+  const router = useRouter();
   const [searchInput, setSearchInput] = useState('');
   const [listings, setListings] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -27,6 +28,11 @@ export default function Home() {
   const todayStr = new Date().toISOString().split('T')[0];
 
   useEffect(() => {
+    // Redirect to login if not logged in
+    if (typeof window !== 'undefined' && !localStorage.getItem('token')) {
+      router.push('/login');
+      return;
+    }
     const fetchListings = async () => {
       try {
         const response = await fetch('https://glen-21u1.vercel.app/api/listings');
@@ -135,7 +141,7 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <div className="pb-16">
       <Header searchInput={searchInput} setSearchInput={setSearchInput} />
       <main>
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -304,8 +310,6 @@ export default function Home() {
           </div> : <span className="w-full">No properties match your current filters.</span>}
         </section>
       </main>
-
-      <Footer />
     </div>
   );
 }

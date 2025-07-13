@@ -3,7 +3,7 @@ import { StarIcon } from "@heroicons/react/24/solid";
 
 function MediumCard({ img, location,currency, price, rating }) {
   return (
-    <div className="flex flex-col w-full space-y-2 cursor-pointer hover:scale-105 transition transform duration-200 ease-out">
+    <div className="flex flex-col w-full space-y-2 cursor-pointer opacity-98 hover:opacity-100 hover:scale-101 transition transform duration-200 ease-out">
       <div className="relative h-48 sm:h-52 md:h-60 w-full">
         <Image
           src={img}

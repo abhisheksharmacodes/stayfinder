@@ -1,7 +1,6 @@
 'use client';
 
 import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 import DatePicker from '../../components/DatePicker';
 import Snackbar from '../../components/Snackbar';
 import Image from 'next/image';
@@ -43,6 +42,11 @@ function ListingDetail() {
   };
 
   useEffect(() => {
+    // Redirect to login if not logged in
+    if (typeof window !== 'undefined' && !localStorage.getItem('token')) {
+      router.push('/login');
+      return;
+    }
     const fetchListing = async () => {
       try {
         const response = await fetch(`https://glen-21u1.vercel.app/api/listings/${id}`);
@@ -132,7 +136,6 @@ function ListingDetail() {
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
           </div>
         </main>
-        <Footer />
       </div>
     );
   }
@@ -145,7 +148,6 @@ function ListingDetail() {
           <h1 className="text-2xl font-semibold pb-5">Listing Not Found</h1>
           <p>The property you are looking for does not exist.</p>
         </main>
-        <Footer />
       </div>
     );
   }
@@ -276,7 +278,6 @@ function ListingDetail() {
           </div>
         </section>
       </main>
-      <Footer />
       <Snackbar
         isVisible={snackbar.isVisible}
         message={snackbar.message}
