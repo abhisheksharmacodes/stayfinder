@@ -54,7 +54,7 @@ export default function DashboardPage() {
               <div
                 key={listing._id}
                 onClick={() => router.push(`/dashboard/edit-listing/${listing._id}`)}
-                className="cursor-pointer group hover:scale-[1.03] active:scale-95 transition-transform duration-200"
+                className="cursor-pointer group hover:scale-[1.01] active:scale-95 transition-transform duration-200"
               >
                 <MediumCard
                   currency={listing.currency}
